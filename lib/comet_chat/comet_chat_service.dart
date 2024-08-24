@@ -1,3 +1,4 @@
+import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 import 'package:logger/logger.dart';
 
@@ -6,11 +7,21 @@ class CometChatService {
   static final CometChatService instance = CometChatService._();
 
   // These are just for testing purpose in production app you will create your own user using self generated auth_token
-  final String userId_1 = 'cometchat-uid-1';
-  final String userId_2 = 'cometchat-uid-2';
+  final List<String> availableUsers = [
+    'cometchat-uid-1',
+    'cometchat-uid-2',
+    'cometchat-uid-3',
+    'cometchat-uid-4',
+    'cometchat-uid-5',
+  ];
 
   // This is the user that we get once we have logged into comet chat
   User? _user;
+
+  // This navigator will be used to navigate to call screen from anywhere in the app.
+  // For this to work we have to assign this to the top most widget of the app.
+  // In our case we are gonna put it at MaterialApp
+  final navigatorKey = CallNavigationContext.navigatorKey;
 
   // This intialization is necessary to make sure to connect the comet chat application
   Future<void> initalize() async {
@@ -21,6 +32,7 @@ class CometChatService {
     builder.appId = '262815bd015b8e63';
     builder.authKey = 'a458a53052635c4da34576bf2ec6848b55194d62';
     builder.extensions = CometChatUIKitChatExtensions.getDefaultExtensions();
+    builder.callingExtension = CometChatCallingExtension();
 
     final UIKitSettings uiKitSettings = builder.build();
     await CometChatUIKit.init(

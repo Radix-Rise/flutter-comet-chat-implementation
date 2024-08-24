@@ -1,4 +1,5 @@
-import 'package:comment_chat/button_column.dart';
+import 'package:comment_chat/comet_chat/comet_chat_service.dart';
+import 'package:comment_chat/users_to_login.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,11 +9,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      navigatorKey: CometChatService.instance.navigatorKey,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ButtonColumn(),
+      home: const UsersToLogin(),
     );
   }
 }

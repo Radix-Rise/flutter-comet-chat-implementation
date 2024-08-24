@@ -57,6 +57,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  cometchat_calls_sdk:
+    dependency: transitive
+    description:
+      name: cometchat_calls_sdk
+      sha256: "4bff80c250adde34adcb58af27852c6d1f60107a8091ed01fee289adb69d3720"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.10"
+  cometchat_calls_uikit:
+    dependency: "direct main"
+    description:
+      name: cometchat_calls_uikit
+      sha256: "817aebb2c4c2d3074daa91ad9cd81802c37820b5e5618971f61bca48fa9f74e4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.4"
   cometchat_chat_uikit:
     dependency: "direct main"
     description:

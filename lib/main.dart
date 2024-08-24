@@ -6,6 +6,5 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final CometChatService cometChatService = CometChatService.instance;
   await cometChatService.initalize();
-  await cometChatService.login(cometChatService.userId_1);
   runApp(const App());
 }
