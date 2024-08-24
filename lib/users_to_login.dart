@@ -1,5 +1,5 @@
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
-import 'package:comment_chat/comet_chat/comet_chat_service.dart';
+import 'package:comment_chat/comet_chat_service.dart';
 import 'package:flutter/material.dart';
 
 class UsersToLogin extends StatefulWidget {

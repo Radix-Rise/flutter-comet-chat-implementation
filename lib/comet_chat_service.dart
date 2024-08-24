@@ -15,9 +15,6 @@ class CometChatService {
     'cometchat-uid-5',
   ];
 
-  // This is the user that we get once we have logged into comet chat
-  User? _user;
-
   // This navigator will be used to navigate to call screen from anywhere in the app.
   // For this to work we have to assign this to the top most widget of the app.
   // In our case we are gonna put it at MaterialApp
@@ -35,11 +32,7 @@ class CometChatService {
     builder.callingExtension = CometChatCallingExtension();
 
     final UIKitSettings uiKitSettings = builder.build();
-    await CometChatUIKit.init(
-      uiKitSettings: uiKitSettings,
-      onSuccess: (String successMessage) {},
-      onError: (CometChatException error) {},
-    );
+    await CometChatUIKit.init(uiKitSettings: uiKitSettings);
   }
 
   // Before enabling any communication between users we need to login that user in comet chat
@@ -50,13 +43,28 @@ class CometChatService {
       Logger().w('No user found with the porvided userId: $userId');
       return;
     }
-    _user = user;
-    Logger().d('User logged in succesfully $_user');
+  }
+
+  Future<void> endAllExistingCalls() async {
+    final call = await CometChat.getActiveCall();
+    if (call == null || call.sessionId == null) return;
+    CometChat.endCall(
+      call.sessionId!,
+      onSuccess: (message) {
+        Logger().d('Session ended $message');
+      },
+      onError: (error) {
+        Logger().e('Could not end session $error');
+      },
+    );
+
+    await Future.delayed(const Duration(milliseconds: 200));
   }
 
   // This get will make sure that the user has been logged in before actually using it in the code.
   User get user {
-    if (_user != null) return _user!;
+    final user = CometChatUIKit.loggedInUser;
+    if (user != null) return user;
     throw Exception('Please Login user');
   }
 }

@@ -1,4 +1,4 @@
-import 'package:comment_chat/comet_chat/comet_chat_service.dart';
+import 'package:comment_chat/comet_chat_service.dart';
 import 'package:comment_chat/users_to_login.dart';
 import 'package:flutter/material.dart';
 
