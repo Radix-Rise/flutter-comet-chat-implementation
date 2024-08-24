@@ -1,18 +1,18 @@
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 import 'package:logger/logger.dart';
 
-class CommetChatService {
-  CommetChatService._();
-  static final CommetChatService instance = CommetChatService._();
+class CometChatService {
+  CometChatService._();
+  static final CometChatService instance = CometChatService._();
 
   // These are just for testing purpose in production app you will create your own user using self generated auth_token
-  static const String userId_1 = 'cometchat-uid-1';
-  static const String userId_2 = 'cometchat-uid-2';
+  final String userId_1 = 'cometchat-uid-1';
+  final String userId_2 = 'cometchat-uid-2';
 
   // This is the user that we get once we have logged into comet chat
   User? _user;
 
-  // This intialization is necessary to make sure to connect the commet chat application
+  // This intialization is necessary to make sure to connect the comet chat application
   Future<void> initalize() async {
     final UIKitSettingsBuilder builder = UIKitSettingsBuilder();
     builder.subscriptionType = CometChatSubscriptionType.allUsers;
@@ -39,6 +39,7 @@ class CommetChatService {
       return;
     }
     _user = user;
+    Logger().d('User logged in succesfully $_user');
   }
 
   // This get will make sure that the user has been logged in before actually using it in the code.
